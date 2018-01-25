@@ -9,7 +9,9 @@
 # Version: 2018/01/25
 #──────────────────────────
 # discription:
-#          Load cookies from a local browser.
+#          Load cookies from a local browser. Use browser_cookie3
+         # Details of module can be found in:
+#                  https://github.com/borisbabic/browser_cookie3
 #──────────────────────────
 # Imported :
 import browser_cookie3
