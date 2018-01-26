@@ -31,6 +31,8 @@ import json
 #        [fun]  GetMusicList()
 #                return pointer directly.
 #
+#
+#
 # ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 
 
@@ -49,7 +51,7 @@ class Scraping():
 
     def GetHeaders(self):
         headers = ch.CreateHeaders()
-        headers.AppendLanguage('en')
+        headers.AppendLanguage('zh')
         return headers.GetHeaders()
 
 
@@ -82,6 +84,8 @@ class Scraping():
 
     def GetMusicList(self):
         return  self.Music
+
+
 
 
 #
