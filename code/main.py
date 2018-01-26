@@ -14,12 +14,16 @@ cookies = lct.GetLocalCookies().GetCookies()
 
 
 url = 'https://www.youtube.com/audiolibrary/music'
-#
-r = requests.get( url = url , cookies = cookies )
+
+Page = requests.get( url = url , cookies = cookies )
 
 
 
-print(r.text)
+l = Page.json
+
+# r = requests.post('http://httpbin.org/post', data = {'key':'value'}, cookies = cookies)
+# r = Page.post(  data = {'key':'value'})
+print( l  )
 
 
 
