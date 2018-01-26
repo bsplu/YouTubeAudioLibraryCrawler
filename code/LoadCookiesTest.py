@@ -14,7 +14,7 @@
 #                  https://github.com/borisbabic/browser_cookie3
 #──────────────────────────
 # Imported :
-import browser_cookie3
+import Usage
 #──────────────────────────
 #
 # Interface:
@@ -45,8 +45,8 @@ class GetLocalCookies(object):
     def GetCookies(self):
         #-------------------------------------
         Browserlist = {
-           "chrome" : browser_cookie3.chrome   ,
-           "firefox": browser_cookie3.firefox  ,
+           "chrome" : Usage.browser_cookie3.chrome   ,
+           "firefox": Usage.browser_cookie3.firefox  ,
         }
         #-------------------------------------
         if self.browser.lower() not in list(Browserlist.keys()):

@@ -12,10 +12,8 @@
 #          Scraping all the list
 # ──────────────────────────
 # Imported  :
-import requests
+import Usage
 import CreateHeaders as ch
-from bs4 import BeautifulSoup
-import json
 # ──────────────────────────
 # Standards :
 #
@@ -51,19 +49,19 @@ class Scraping():
 
     def GetHeaders(self):
         headers = ch.CreateHeaders()
-        headers.AppendLanguage('zh')
+        headers.AppendLanguage('en')
         return headers.GetHeaders()
 
 
     # return has_more = True/False
     def AppendSegDict(self,mr,si,qid):
         url      = self.GetAudioSwapUrl(mr,si,qid)
-        tempPage = requests.get( url = url , cookies = self.Cookies ,headers = self.GetHeaders() )
-        soup     = BeautifulSoup(tempPage.content, 'html.parser')
-        d = json.loads(soup.prettify())
+        tempPage = Usage.requests.get( url = url , cookies = self.Cookies ,headers = self.GetHeaders() )
+        soup     = Usage.BeautifulSoup(tempPage.content, 'html.parser')
+        d        = Usage.json.loads(soup.prettify())
         has_more = d['has_more']
         tracks   = d['tracks']
-        continuation_token = d['continuation_token'] #None
+        conto    = d['continuation_token'] #None
         for jc in tracks:
             self.Music.append(jc)
         return has_more
@@ -84,16 +82,3 @@ class Scraping():
 
     def GetMusicList(self):
         return  self.Music
-
-
-
-
-#
-# l1 = {"1":1  , "2":2 }
-# l3 = {"4":4,5:{8:"x"}   ,78:"65"}
-#
-# l1.update(l3)
-# print(l1)
-
-    # def AppendSegDict(self,SegDict):
-    #     self.Music.update(SegDict)
