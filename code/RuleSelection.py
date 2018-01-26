@@ -12,6 +12,7 @@
 #          Input Dictionary list. According to a rule, output any other list of  disctionary.
 # ──────────────────────────
 # Imported  :
+import Usage
 # ──────────────────────────
 # Standards :
 #
@@ -22,7 +23,10 @@
 #
 #        [ini]  InputDicList
 #
-#        [fun]  GetSelection(self,rule_dict)
+#        [fun]  GetSelection(rule_dict)
+#               return a list of Dictionary
+#
+#        [sub]  GetSelectionToXmlFile(rule_dict,XmlPath)
 #
 #
 #
@@ -58,3 +62,13 @@ class RuleSelection():
                   R = False
                   break
         return R
+
+    def GetSelectionToXmlFile(self,rule_dict,XmlPath):
+        Selected = self.GetSelection(rule_dict)
+        xml = { jc['vid']:jc  for jc in Selected}
+        xml = Usage.dicttoxml.dicttoxml(xml)
+        dom = Usage.parseString(xml)
+        st = dom.toprettyxml()
+        file_handle = open(XmlPath,"w")
+        file_handle.write(st)
+        file_handle.close()
