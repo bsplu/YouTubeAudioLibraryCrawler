@@ -49,7 +49,13 @@ class main():
         Music = sa.GetMusicList()
         #-----------------------------------------------------
         # get xml
-        xml = { jc['vid']:jc  for jc in Music}
+        xml = { ("MusicId_"+str(jc['vid'])):jc  for jc in Music}
+
+        keys = xml.keys()
+        for jc in keys:
+            print(jc)
+
+
         xml = Usage.dicttoxml.dicttoxml(xml)
         #-----------------------------------------------------
         # write file
