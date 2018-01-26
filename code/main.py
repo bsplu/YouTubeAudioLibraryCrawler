@@ -1,31 +1,26 @@
 #!/usr/bin/env python3
 
-# url = 'http://types.yuzeli.com/=/msg.ref'
-# r = requests.get(url)
-#
-#
-# print(r.text)
+
 import requests
 import LoadCookiesTest as lct
-
+import CreateHeaders as ch
+import Scraping
 
 
 cookies = lct.GetLocalCookies().GetCookies()
 
+sa = Scraping.Scraping(SegLen=1000,Cookies=cookies,show=1)
+sa.ScrapingAll()
 
-url = 'https://www.youtube.com/audiolibrary/music'
+Music = sa.GetMusicList()
 
-Page = requests.get( url = url , cookies = cookies )
+f = open("testlist.txt","w")
 
+for jc in Music:
+    f.write(jc['title'])
+    f.write("\n")
+f.write("-----------")
 
-
-l = Page.json
-
-# r = requests.post('http://httpbin.org/post', data = {'key':'value'}, cookies = cookies)
-# r = Page.post(  data = {'key':'value'})
-print( l  )
-
-
-
-
-# print(lct.SelectBrowser)
+for jc in Music[0].keys():
+    s = jc + "  " + Music[0][jc]
+    f.write(s)
